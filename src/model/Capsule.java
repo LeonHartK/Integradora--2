@@ -1,5 +1,7 @@
 package model;
 
+import java.time.LocalDateTime;
+
 public class Capsule {
     private String id;
     private String description;
@@ -7,6 +9,8 @@ public class Capsule {
     private String positionColaborator;
     private String learn;
     private String typeCapsule;
+    private boolean approved;
+    private LocalDateTime approvedTime;
 
     public Capsule(){
 
@@ -19,6 +23,7 @@ public class Capsule {
         this.positionColaborator=positionColaborator;
         this.learn=learn;
         this.typeCapsule=typeCapsule;
+        this.approved=false;
     }
 
     public String getId() {
@@ -67,5 +72,21 @@ public class Capsule {
 
     public void setTypeCapsule(String typeCapsule) {
         this.typeCapsule = typeCapsule;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
+
+    public LocalDateTime getApprovedTime() {
+        return approvedTime;
+    }
+
+    public void setApprovedTime(LocalDateTime approvedTime) {
+        this.approvedTime = approvedTime;
     }
 }

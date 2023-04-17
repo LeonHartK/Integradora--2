@@ -28,13 +28,7 @@ public class Proyect {
         this.phoneManager=phoneManager;
     }
 
-    /*public String finishStage(String approved, Date realFinishDate){
-        String message="";
-        if (approved.equalsIgnoreCase("Aprobado")){
-            
-        }
-        return message;
-    }*/
+    
 
     public String getNameProyect() {
         return nameProyect;

@@ -1,15 +1,16 @@
 package model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Stage {
-    private int numero;
-    private int duracion;
-    private boolean approved;
     private Date startDate;
     private Date finishDate;
     private Date realStartDate;
     private Date realFinishDate;
+    private boolean approved;
+    private typeStage type;
+
     Capsule[] capsules;
 
     public Stage(){
@@ -22,10 +23,9 @@ public class Stage {
         this.realStartDate=realStartDate;
         this.realFinishDate=realFinishDate;
         this.approved=true;
+        this.type=typeStage.START;
         this.capsules = new Capsule[50];
     }
-
-
 
     public String addCapsule(String id, String description, String capsuleName, String positionColaborator, String learn, String typeCapsule){
         boolean status=false;
@@ -57,20 +57,29 @@ public class Stage {
         } return c;
     }
 
-    public int getNumero() {
-        return numero;
+    public String approvedCapsule(String id){
+        String message="";
+        for (int i=0; i<capsules.length;i++){
+            if(capsules[i]!=null){
+                if (capsules[i].getId().equalsIgnoreCase(id)){
+                    if(capsules[i].isApproved()==false){
+                        capsules[i].setApproved(true);
+                        capsules[i].setApprovedTime(LocalDateTime.now());
+                        message="La capsula ha sido aprobada y su fecha de aprobacion fue el: "+capsules[i].getApprovedTime();
+                    }
+                } else {
+                    message="La capsula no se encuentra registrada";
+                }
+            }
+        } return message;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public typeStage getType() {
+        return type;
     }
 
-    public int getDuracion() {
-        return duracion;
-    }
-
-    public void setDuracion(int duracion) {
-        this.duracion = duracion;
+    public void setType(typeStage type) {
+        this.type = type;
     }
 
     public Date getStartDate() {
