@@ -1,4 +1,6 @@
 package model;
+
+import java.util.Calendar;
 import java.util.Date;
 
 public class Proyect {
@@ -33,11 +35,13 @@ public class Proyect {
     }
 
     private Date calculateDatePlan(int numEtapa, int[] monthsForStage){
-        int totMonths = 0;
-        for (int i = 0; i < numEtapa; i++){
-            totMonths += monthsForStage[i];
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+
+        for (int i=0; i<numEtapa; i++){
+            cal.add(Calendar.MONTH, monthsForStage[i]);
         }
-        return new Date(totMonths / 12, totMonths % 12+1, 1);
+        return cal.getTime();
     }
 
     public void assignPlannedDates(int[] monthsForStage){
