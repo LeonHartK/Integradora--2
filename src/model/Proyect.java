@@ -28,7 +28,7 @@ public class Proyect {
         this.nameManager=nameManager;
         this.phoneManager=phoneManager;
         this.stages = new Stage[6];
-        this.stages[0] = new Stage("Inicio", true);
+        this.stages[0] = new Stage(typeStage.START, true);
         for (int i=1;i<6;i++){
             this.stages[i]=new Stage(getNameStage(i), false);
         }
@@ -62,20 +62,20 @@ public class Proyect {
         this.stages[numEtapa].setApproved(true);
     }
 
-    private String getNameStage(int numEtapa){
+    private typeStage getNameStage(int numEtapa){
         switch (numEtapa){
             case 1:
-                return "Analisis";
+                return typeStage.ANALYSIS;
             case 2:
-                return "Diseno";
+                return typeStage.DESIGN;
             case 3:
-                return "Ejecucion";
+                return typeStage.EXECUTION;
             case 4:
-                return "Cierre";
+                return typeStage.CLOSE;
             case 5:
-                return "Seguimiento y control";
+                return typeStage.CONTROL;
             default:
-                return "";
+                return typeStage.START;
         }
     }
 

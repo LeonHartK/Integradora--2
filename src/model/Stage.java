@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Stage {
-    private String name;
+    private typeStage name;
     private boolean active;
     private Date startDate;
     private Date finishDate;
@@ -21,7 +21,7 @@ public class Stage {
         
     }
 
-    public Stage(String name, boolean active){
+    public Stage(typeStage name, boolean active){
         this.name=name;
         this.active=active;
     }
@@ -101,11 +101,11 @@ public class Stage {
             }
         }
 
-    public String getName() {
+    public typeStage getName() {
         return name;
     }
     
-    public void setName(String name) {
+    public void setName(typeStage name) {
         this.name = name;
     }
     
