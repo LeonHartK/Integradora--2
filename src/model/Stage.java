@@ -7,17 +7,23 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Stage {
+    private String name;
+    private boolean active;
     private Date startDate;
     private Date finishDate;
     private Date realStartDate;
     private Date realFinishDate;
     private boolean approved;
-    private typeStage type;
 
     Capsule[] capsules;
 
     public Stage(){
         
+    }
+
+    public Stage(String name, boolean active){
+        this.name=name;
+        this.active=active;
     }
 
     public Stage(Date startDate, Date finishDate, Date realStartDate, Date realFinishDate){
@@ -26,7 +32,6 @@ public class Stage {
         this.realStartDate=realStartDate;
         this.realFinishDate=realFinishDate;
         this.approved=true;
-        this.type=typeStage.START;
         this.capsules = new Capsule[50];
     }
 
@@ -96,12 +101,20 @@ public class Stage {
             }
         }
 
-    public typeStage getType() {
-        return type;
+    public String getName() {
+        return name;
     }
-
-    public void setType(typeStage type) {
-        this.type = type;
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public boolean isActive() {
+        return active;
+    }
+    
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public Date getStartDate() {

@@ -1,6 +1,4 @@
 package model;
-
-//import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Proyect {
@@ -12,6 +10,7 @@ public class Proyect {
     private double budget;
     private String nameManager;
     private String phoneManager;
+    private Stage[] stages;
 
     public Proyect(){
 
@@ -26,9 +25,55 @@ public class Proyect {
         this.budget=budget;
         this.nameManager=nameManager;
         this.phoneManager=phoneManager;
+        this.stages = new Stage[6];
+        this.stages[0] = new Stage("Inicio", true);
+        for (int i=1;i<6;i++){
+            this.stages[i]=new Stage(getNameStage(i), false);
+        }
     }
 
-    
+    private Date calculateDatePlan(int numEtapa, int[] monthsForStage){
+        int totMonths = 0;
+        for (int i = 0; i < numEtapa; i++){
+            totMonths += monthsForStage[i];
+        }
+        return new Date(totMonths / 12, totMonths % 12+1, 1);
+    }
+
+    public void assignPlannedDates(int[] monthsForStage){
+        for(int i = 0; i<6; i++){
+            this.stages[i].setStartDate(calculateDatePlan(i, monthsForStage));
+            this.stages[i].setFinishDate(calculateDatePlan(i+1, monthsForStage));
+        }
+    }
+
+    public void startStage(int numEtapa){
+        this.stages[numEtapa].setActive(true);
+        this.stages[numEtapa].setRealStartDate(new Date());
+    }
+
+    public void endStage(int numEtapa){
+        this.stages[numEtapa].setActive(false);
+        this.stages[numEtapa].setRealFinishDate(new Date());
+        this.stages[numEtapa].setApproved(true);
+    }
+
+    private String getNameStage(int numEtapa){
+        switch (numEtapa){
+            case 1:
+                return "Analisis";
+            case 2:
+                return "Diseno";
+            case 3:
+                return "Ejecucion";
+            case 4:
+                return "Cierre";
+            case 5:
+                return "Seguimiento y control";
+            default:
+                return "";
+        }
+    }
 
     public String getNameProyect() {
         return nameProyect;
