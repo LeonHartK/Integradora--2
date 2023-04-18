@@ -1,5 +1,8 @@
 package model;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -73,6 +76,25 @@ public class Stage {
             }
         } return message;
     }
+
+    public void generarArchivoHTML(String rutaArchivo){
+        for (int i=0; i<capsules.length; i++){
+            if (capsules[i]!=null){
+                if(capsules[i].isApproved()==true){
+                    try{
+                        File file = new File(rutaArchivo);
+                        FileWriter writer = new FileWriter(file);
+                        writer.write("<html><head><title>Capsulas de interes organizacional</title></head>");
+                        writer.write("<body><h1>Capsulas</h1><p>"+capsules[i].getCapsuleName()+"<br></p></body></html>");
+                        writer.close();
+                        System.out.println("Archivo HTML generado exitosamente.");
+                    } catch(IOException e){
+                        System.out.println("Ocurrio un error al generar el archivo HTML." + e.getMessage());
+                    }
+                    }
+                }
+            }
+        }
 
     public typeStage getType() {
         return type;
