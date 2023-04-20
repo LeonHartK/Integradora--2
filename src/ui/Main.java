@@ -102,7 +102,9 @@ public class Main {
     }
 
     public void endStageProyect(){
-        System.out.println("¿Desea finalizar la etapa de este proyecto?");
+        System.out.println("¿Desea finalizar la etapa de este proyecto? Escribe la palabra por favor");
+        System.out.println("1) Si");
+        System.out.println("1) No");
         String answer=entrada.nextLine();
 
         if (answer.equalsIgnoreCase("Si")){
