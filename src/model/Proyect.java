@@ -67,18 +67,18 @@ public class Proyect {
         this.stages[numEtapa].setRealStartDate(new Date());
     }*/
 
-    public String endStage(int numEtapa){
-        this.stages[numEtapa].setActive(false);
-        this.stages[numEtapa].setRealFinishDate(new Date());
-        this.stages[numEtapa].setApproved(true);
-        this.stages[numEtapa+1].setActive(true);
-        this.stages[numEtapa+1].setRealFinishDate(new Date());
+    public String endStage(){
+        this.stages[numeroEtapa()].setActive(false);
+        this.stages[numeroEtapa()].setRealFinishDate(new Date());
+        this.stages[numeroEtapa()].setApproved(true);
+        this.stages[numeroEtapa()+1].setActive(true);
+        this.stages[numeroEtapa()+1].setRealFinishDate(new Date());
         
         String message = "Se ha finalizado la etapa";
 
-        /*for (int i=0;i<6;i++){
+        for (int i=0;i<6;i++){
             System.out.println(stages[i].isActive());
-        }*/
+        }
         return message;
     }
 

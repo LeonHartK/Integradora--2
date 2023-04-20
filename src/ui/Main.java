@@ -5,12 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import model.Enterprise;
-import model.Proyect;
 
 public class Main {
 
     Scanner entrada;
     Enterprise mensajero;
+    String currentProyect;
 
     public Main(){
         mensajero = new Enterprise();
@@ -98,18 +98,17 @@ public class Main {
         String phoneManager=entrada.nextLine();
 
         System.out.println(mensajero.addProyect(nameProyect, nameClient, phoneClient, testDate, testDate2, budget, nameManager, phoneManager));
+        setCurrentProyect(nameProyect);
     }
 
     public void endStageProyect(){
         System.out.println("¿Desea finalizar la etapa de este proyecto?");
-        String answer = entrada.nextLine();
+        String answer=entrada.nextLine();
 
-        Proyect objProyect = new Proyect("", "", "", null, null, 0, "", "");
-
-        System.out.println(objProyect.endStage(objProyect.numeroEtapa()));
+        if (answer.equalsIgnoreCase("Si")){
+            System.out.println(mensajero.endStage(getCurrentProyect()));
+        }
     }
-
-    
 
     public void ejecutar(int n){
         if(n==1){
@@ -118,4 +117,15 @@ public class Main {
             endStageProyect();
         }
     }
+
+    public String getCurrentProyect(){
+        return currentProyect;
+    }
+
+    public void setCurrentProyect(String currentProyect){
+        this.currentProyect=currentProyect;
+    }
+
 }
+
+
