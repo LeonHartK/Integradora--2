@@ -14,8 +14,14 @@ public class Enterprise {
     public String addProyect(String nameProyect, String nameClient, String phoneClient, Date startDate, Date finishDate, double budget, String nameManager, String phoneManager){
         String message="";
         if (!searchProyect(nameProyect)){
-            proyects.add(new Proyect(nameProyect, nameClient, phoneClient, startDate, finishDate, budget, nameManager, phoneManager));
-            message="El proyecto fue creado exitosamente";
+            for (int i=0;i<proyects.size();i++){
+                if (proyects.get(i)==null){
+                    proyects.add(new Proyect(nameProyect, nameClient, phoneClient, startDate, finishDate, budget, nameManager, phoneManager));
+                    message="El proyecto fue creado exitosamente";
+                } else {
+                    message="Ya no hay espacio";
+                }
+            }
         } else {
             message="El proyecto ya esta creado";
         } return message;
