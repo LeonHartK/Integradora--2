@@ -5,19 +5,20 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import model.Enterprise;
+import model.Proyect;
 
-public class Proyect {
+public class Main {
 
     Scanner entrada;
     Enterprise mensajero;
 
-    public Proyect(){
+    public Main(){
         mensajero = new Enterprise();
         entrada = new Scanner(System.in);
     }
 
     public static void main(String[] args) {
-        Proyect green = new Proyect();
+        Main green = new Main();
 
         int opc;
 
@@ -29,8 +30,8 @@ public class Proyect {
     }
 
     public int menu(){
-        System.out.println("1)Registrar Empresa");
-        System.out.println("2)Registrar un proyecto");
+        System.out.println("1)Crear un proyecto");
+        System.out.println("2)Culminar etapa de un proyecto");
 
         int n=entrada.nextInt();
         entrada.nextLine();
@@ -97,6 +98,11 @@ public class Proyect {
         String phoneManager=entrada.nextLine();
 
         System.out.println(mensajero.addProyect(nameProyect, nameClient, phoneClient, testDate, testDate2, budget, nameManager, phoneManager));
+    }
+
+    public void endStageProyect(){
+        System.out.println("¿Desea finalizar la etapa de este proyecto?");
+        String answer = entrada.nextLine();
     }
 
     
