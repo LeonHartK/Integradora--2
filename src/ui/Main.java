@@ -103,15 +103,19 @@ public class Main {
     public void endStageProyect(){
         System.out.println("¿Desea finalizar la etapa de este proyecto?");
         String answer = entrada.nextLine();
+
+        Proyect objProyect = new Proyect("", "", "", null, null, 0, "", "");
+
+        System.out.println(objProyect.endStage(objProyect.numeroEtapa()));
     }
 
     
 
     public void ejecutar(int n){
         if(n==1){
-            System.out.println("aun no disponible");
-        } else if(n==2){
             registerProyect();
+        } else if(n==2){
+            endStageProyect();
         }
     }
 }
