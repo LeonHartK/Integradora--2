@@ -72,7 +72,7 @@ public class Enterprise {
     }
 
     public String addCapsule(String nameProyect, String id, String description, String capsuleName,
-            String positionColaborator, String learn, String typeCapsule) {
+            String positionColaborator, String learn, int typeCapsule) {
         String message = "";
         boolean status = false;
         for (int i = 0; i < proyects.length && !status; i++) {
@@ -81,7 +81,7 @@ public class Enterprise {
                     if (proyects[i].getNameProyect().equalsIgnoreCase(nameProyect)) {
                         Proyect proyect = searchProyectObj(nameProyect);
                         message = proyect.searchStageObj().addCapsule(id, description, capsuleName, positionColaborator,
-                                learn, typeCapsule);
+                                learn, getNameCapsule(typeCapsule));
                         status = true;
                     } else {
                         message = "No hay proyectos con ese nombre";
@@ -92,6 +92,20 @@ public class Enterprise {
             }
         }
         return message;
+    }
+
+    public typeCapsule getNameCapsule(int capsule) {
+        switch (capsule) {
+            case 1:
+                return typeCapsule.TECNICO;
+            case 2:
+                return typeCapsule.GESTION;
+            case 3:
+                return typeCapsule.DOMINIO;
+            case 4:
+                return typeCapsule.EXPERIENCIAS;
+        }
+        return null;
     }
 
     public String approvedCapsule(String nameProyect, String id) {
@@ -124,6 +138,27 @@ public class Enterprise {
                     if (proyects[i].getNameProyect().equalsIgnoreCase(nameProyect)) {
                         Proyect proyect = searchProyectObj(nameProyect);
                         message = proyect.searchStageObj().generarArchivoHTML(ruta);
+                        status = true;
+                    } else {
+                        message = "No hay un proyecto con dicho nombre";
+                    }
+                }
+            } else {
+                message = "No hay proyectos registrados";
+            }
+        }
+        return message;
+    }
+
+    public String cantCapType(String nameProyect) {
+        String message = "";
+        boolean status = false;
+        for (int i = 0; i < proyects.length && !status; i++) {
+            if (proyects[0] != null) {
+                if (proyects[i] != null) {
+                    if (proyects[i].getNameProyect().equalsIgnoreCase(nameProyect)) {
+                        Proyect proyect = searchProyectObj(nameProyect);
+                        message = proyect.searchStageObj().returncantCap();
                         status = true;
                     } else {
                         message = "No hay un proyecto con dicho nombre";

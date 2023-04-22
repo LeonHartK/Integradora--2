@@ -8,22 +8,23 @@ public class Capsule {
     private String capsuleName;
     private String positionColaborator;
     private String learn;
-    private String typeCapsule;
+    private typeCapsule typeCapsule;
     private boolean approved;
     private LocalDateTime approvedTime;
 
-    public Capsule(){
+    public Capsule() {
 
     }
 
-    public Capsule(String id, String description, String capsuleName, String positionColaborator, String learn, String typeCapsule){
-        this.id=id;
-        this.description=description;
-        this.capsuleName=capsuleName;
-        this.positionColaborator=positionColaborator;
-        this.learn=learn;
-        this.typeCapsule=typeCapsule;
-        this.approved=false;
+    public Capsule(String id, String description, String capsuleName, String positionColaborator, String learn,
+            typeCapsule typeCapsule) {
+        this.id = id;
+        this.description = description;
+        this.capsuleName = capsuleName;
+        this.positionColaborator = positionColaborator;
+        this.learn = learn;
+        this.typeCapsule = typeCapsule;
+        this.approved = false;
     }
 
     public String getId() {
@@ -66,11 +67,11 @@ public class Capsule {
         this.learn = learn;
     }
 
-    public String getTypeCapsule() {
+    public typeCapsule getTypeCapsule() {
         return typeCapsule;
     }
 
-    public void setTypeCapsule(String typeCapsule) {
+    public void setTypeCapsule(typeCapsule typeCapsule) {
         this.typeCapsule = typeCapsule;
     }
 

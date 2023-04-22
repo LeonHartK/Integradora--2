@@ -35,7 +35,7 @@ public class Stage {
     }
 
     public String addCapsule(String id, String description, String capsuleName, String positionColaborator,
-            String learn, String typeCapsule) {
+            String learn, typeCapsule typeCapsule) {
         boolean status = false;
         String message = "La capsula no se pudo crear porque no hay mas espacio";
         Capsule com = searchCapsule(id);
@@ -117,6 +117,42 @@ public class Stage {
                         }
                     }
                 }
+            } else {
+                message = "No hay capsulas registradas";
+            }
+        }
+        return message;
+    }
+
+    public String returncantCap() {
+        int cantTecnico = 0;
+        int cantGestion = 0;
+        int cantDominio = 0;
+        int cantExperiencia = 0;
+        String message = "";
+
+        for (int i = 0; i < capsules.length; i++) {
+            if (capsules[0] != null) {
+                if (capsules[i] != null) {
+                    switch (capsules[i].getTypeCapsule()) {
+                        case TECNICO:
+                            cantTecnico++;
+                            break;
+                        case GESTION:
+                            cantGestion++;
+                            break;
+                        case DOMINIO:
+                            cantDominio++;
+                            break;
+                        case EXPERIENCIAS:
+                            cantExperiencia++;
+                            break;
+                    }
+                }
+                message = "Hay " + cantTecnico + " capsulas registradas de tipo tecnico\nHay " + cantGestion
+                        + " capsulas registradas de tipo gestion\nHay " + cantDominio
+                        + " capsulas registradas de tipo dominio\nHay " + cantExperiencia
+                        + " capsulas registradas de tipo experiencias";
             } else {
                 message = "No hay capsulas registradas";
             }

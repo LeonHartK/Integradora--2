@@ -26,7 +26,7 @@ public class Main {
             opc = green.menu();
 
             green.ejecutar(opc);
-        } while (opc != 6);
+        } while (opc != 7);
     }
 
     public int menu() {
@@ -35,6 +35,7 @@ public class Main {
         System.out.println("3)Registrar una capsula");
         System.out.println("4)Aprobar una capsula");
         System.out.println("5)Publicar capsula");
+        System.out.println("6)Numero de capsulas registradas por tipo de capsula");
 
         int n = entrada.nextInt();
         entrada.nextLine();
@@ -135,8 +136,9 @@ public class Main {
         String position = entrada.nextLine();
         System.out.println("Aprendizaje de dicha situacion: ");
         String learn = entrada.nextLine();
-        System.out.println("Escriba el tipo de capsula para la situacion");
-        String typeCapsule = entrada.nextLine();
+        System.out.println(
+                "Escriba el tipo de capsula para la situacion: \n1) Tecnico\n2) Gestion\n3) Dominio\n4) Experiencia");
+        int typeCapsule = entrada.nextInt();
 
         System.out.println(
                 mensajero.addCapsule(nameProyect, id, description, nameColaborator, position, learn, typeCapsule));
@@ -159,6 +161,13 @@ public class Main {
         System.out.println(mensajero.publicCapules(nameProyect, ruta));
     }
 
+    public void cantCap() {
+        System.out.println("Escriba el nombre del proyecto del cual desea saber el numero de capsulas por tipo");
+        String nameProyect = entrada.nextLine();
+
+        System.out.println(mensajero.cantCapType(nameProyect));
+    }
+
     public void ejecutar(int n) {
         if (n == 1) {
             registerProyect();
@@ -170,6 +179,8 @@ public class Main {
             approvedCapsule();
         } else if (n == 5) {
             publicCapules();
+        } else if (n == 6) {
+            cantCap();
         }
     }
 
