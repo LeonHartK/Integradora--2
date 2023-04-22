@@ -34,6 +34,17 @@ public class Proyect {
         }
     }
 
+    public int numeroEtapa(){
+        boolean status = false;
+        int num=0;
+        for (int i=0; i<6 && !status; i++){
+            if (stages[i].isActive()==true){
+                num=i;
+                status=true;
+            }
+        } return num;
+    }
+
     private Date calculateDatePlan(int numEtapa, int[] monthsForStage){
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
@@ -51,15 +62,24 @@ public class Proyect {
         }
     }
 
-    public void startStage(int numEtapa){
+    /*public void startStage(int numEtapa){
         this.stages[numEtapa].setActive(true);
         this.stages[numEtapa].setRealStartDate(new Date());
-    }
+    }*/
 
-    public void endStage(int numEtapa){
-        this.stages[numEtapa].setActive(false);
-        this.stages[numEtapa].setRealFinishDate(new Date());
-        this.stages[numEtapa].setApproved(true);
+    public String endStage(){
+        this.stages[numeroEtapa()].setActive(false);
+        this.stages[numeroEtapa()].setRealFinishDate(new Date());
+        this.stages[numeroEtapa()].setApproved(true);
+        this.stages[numeroEtapa()+1].setActive(true);
+        this.stages[numeroEtapa()+1].setRealFinishDate(new Date());
+        
+        String message = "Se ha finalizado la etapa";
+
+        for (int i=0;i<6;i++){
+            System.out.println(stages[i].isActive());
+        }
+        return message;
     }
 
     private typeStage getNameStage(int numEtapa){
