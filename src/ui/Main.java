@@ -26,12 +26,14 @@ public class Main {
             opc=green.menu();
 
             green.ejecutar(opc);
-        } while(opc!=3);
+        } while(opc!=5);
     }
 
     public int menu(){
         System.out.println("1)Crear un proyecto");
         System.out.println("2)Culminar etapa de un proyecto");
+        System.out.println("3)Registrar una capsula");
+        System.out.println("4)Aprobar una capsula");
 
         int n=entrada.nextInt();
         entrada.nextLine();
@@ -114,14 +116,46 @@ public class Main {
         }
     }
 
+    public void registerCapsule(){
+        System.out.println("Escriba el nombre del proyecto en el cual se registrara la capsula");
+        String nameProyect = entrada.nextLine();
+        System.out.println("Digite el id de la capsula");
+        String id = entrada.nextLine();
+        System.out.println("Describa la situacion que desea registrar");
+        String description = entrada.nextLine();
+        System.out.println("Escriba el nombre del colaborados por favor:");
+        String nameColaborator = entrada.nextLine();
+        System.out.println("Escriba la posicion del colaborador?");
+        String position = entrada.nextLine();
+        System.out.println("Aprendizaje de dicha situacion: ");
+        String learn = entrada.nextLine();
+        System.out.println("Escriba el tipo de capsula para la situacion");
+        String typeCapsule = entrada.nextLine();
+        
+        System.out.println(mensajero.addCapsule(nameProyect, id, description, nameColaborator, position, learn, typeCapsule));
+    }
+
+    public void approvedCapsule(){
+        System.out.println("Escriba el nombre del proyecto en el cual se aprobara la capsula");
+        String nameProyect = entrada.nextLine();
+        System.out.println("Digite el id de la capsula");
+        String id = entrada.nextLine();
+
+        System.out.println(mensajero.approvedCapsule(nameProyect, id));
+    }
+
     public void ejecutar(int n){
         if(n==1){
             registerProyect();
         } else if(n==2){
             endStageProyect();
+        } else if(n==3){
+            registerCapsule();
+        } else if(n==4){
+            approvedCapsule();
         }
     }
-
+    
     public String getCurrentProyect(){
         return currentProyect;
     }

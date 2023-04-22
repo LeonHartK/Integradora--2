@@ -5,7 +5,7 @@ import java.util.Date;
 
 
 public class Enterprise {
-    ArrayList<Proyect> proyects;
+    ArrayList<Proyect> proyects = new ArrayList<>(10);
 
     public Enterprise(){
         this.proyects = new ArrayList<>(10);
@@ -19,7 +19,7 @@ public class Enterprise {
         } else {
             message="El proyecto ya esta creado";
         } return message;
-        }  
+    }  
 
     public boolean searchProyect(String nameProyect){
         boolean status=false;
@@ -56,5 +56,25 @@ public class Enterprise {
             message="No hay proyectos creados";
         }
          return message;
+    }
+
+    public String addCapsule(String nameProyect, String id, String description, String capsuleName, String positionColaborator, String learn, String typeCapsule){
+        String message="";
+        if(!proyects.isEmpty()){
+            Proyect proyect = searchProyectObj(nameProyect);
+            message = proyect.searchStageObj().addCapsule(id, description, capsuleName, positionColaborator, learn, typeCapsule);
+        } else{
+            message = "No hay proyectos creados";
+        }return message;
+    }
+
+    public String approvedCapsule(String nameProyect, String id){
+        String message="";
+        if(!proyects.isEmpty()){
+            Proyect proyect = searchProyectObj(nameProyect);
+            message = proyect.searchStageObj().approvedCapsule(id);
+        } else{
+            message = "No hay proyectos creados";
+        } return message;
     }
 }

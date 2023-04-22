@@ -12,7 +12,7 @@ public class Proyect {
     private double budget;
     private String nameManager;
     private String phoneManager;
-    private Stage[] stages;
+    private Stage[] stages = new Stage[6];
 
     public Proyect(){
 
@@ -44,6 +44,17 @@ public class Proyect {
             }
         } 
         return num;
+    }
+
+    public Stage searchStageObj(){
+        boolean status = false;
+        Stage stage = null;
+        for (int i=0;i<stages.length && !status;i++){
+            if (stages[i].isActive()){
+                status = true;
+                stage = stages[i];
+            }
+        }return stage;
     }
 
     private Date calculateDatePlan(int numEtapa, int[] monthsForStage){

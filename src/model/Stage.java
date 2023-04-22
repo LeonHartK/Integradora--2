@@ -15,7 +15,7 @@ public class Stage {
     private Date realFinishDate;
     private boolean approved;
 
-    Capsule[] capsules;
+    Capsule[] capsules = new Capsule[50];
 
     public Stage(){
         
@@ -32,7 +32,6 @@ public class Stage {
         this.realStartDate=realStartDate;
         this.realFinishDate=realFinishDate;
         this.approved=true;
-        this.capsules = new Capsule[50];
     }
 
     public String addCapsule(String id, String description, String capsuleName, String positionColaborator, String learn, String typeCapsule){
@@ -67,19 +66,23 @@ public class Stage {
 
     public String approvedCapsule(String id){
         String message="";
-        for (int i=0; i<capsules.length;i++){
-            if(capsules[i]!=null){
+        boolean existCapsule = false;
+        if(capsules.length!=0){
+            for (int i=0; i<capsules.length && !existCapsule; i++){
                 if (capsules[i].getId().equalsIgnoreCase(id)){
-                    if(capsules[i].isApproved()==false){
+                    if(capsules[i].isApproved()){
                         capsules[i].setApproved(true);
                         capsules[i].setApprovedTime(LocalDateTime.now());
                         message="La capsula ha sido aprobada y su fecha de aprobacion fue el: "+capsules[i].getApprovedTime();
+                        existCapsule=true;
                     }
                 } else {
                     message="La capsula no se encuentra registrada";
                 }
             }
-        } return message;
+        } else {
+            message = "No hay capsulas registradas";
+        }return message;
     }
 
     public void generarArchivoHTML(String rutaArchivo){
