@@ -12,7 +12,7 @@ public class Main {
     Enterprise mensajero;
     String currentProyect;
 
-    public Main(){
+    public Main() {
         mensajero = new Enterprise();
         entrada = new Scanner(System.in);
     }
@@ -22,34 +22,35 @@ public class Main {
 
         int opc;
 
-        do{
-            opc=green.menu();
+        do {
+            opc = green.menu();
 
             green.ejecutar(opc);
-        } while(opc!=5);
+        } while (opc != 6);
     }
 
-    public int menu(){
+    public int menu() {
         System.out.println("1)Crear un proyecto");
         System.out.println("2)Culminar etapa de un proyecto");
         System.out.println("3)Registrar una capsula");
         System.out.println("4)Aprobar una capsula");
+        System.out.println("5)Publicar capsula");
 
-        int n=entrada.nextInt();
+        int n = entrada.nextInt();
         entrada.nextLine();
 
         return n;
     }
 
-    public void registerProyect(){
+    public void registerProyect() {
         System.out.println("Escribe el nombre del proyecto");
-        String nameProyect=entrada.nextLine();
+        String nameProyect = entrada.nextLine();
 
         System.out.println("Escribe el nombre del cliente");
-        String nameClient=entrada.nextLine();
+        String nameClient = entrada.nextLine();
 
         System.out.println("Escribe el telefono del cliente");
-        String phoneClient=entrada.nextLine();
+        String phoneClient = entrada.nextLine();
 
         System.out.println("Digite la fecha estimada para iniciar el proyecto");
         String fecha = entrada.nextLine();
@@ -58,13 +59,15 @@ public class Main {
         Date testDate = null;
 
         String date = fecha;
-        
+
         try {
             testDate = df.parse(date);
-            System.out.println("Ahora hemos creado un objeto date con la fecha indicada, "+testDate);
-        } catch (Exception e){ System.out.println("invalid format");}
+            System.out.println("Ahora hemos creado un objeto date con la fecha indicada, " + testDate);
+        } catch (Exception e) {
+            System.out.println("invalid format");
+        }
 
-        if (!df.format(testDate).equals(date)){
+        if (!df.format(testDate).equals(date)) {
             System.out.println("invalid date!!");
         } else {
             System.out.println("valid date");
@@ -77,46 +80,49 @@ public class Main {
         Date testDate2 = null;
 
         String datefinal = fechafinal;
-        
+
         try {
             testDate2 = df2.parse(datefinal);
-            System.out.println("Ahora hemos creado un objeto date con la fecha indicada, "+testDate2);
-        } catch (Exception e){ System.out.println("invalid format");}
+            System.out.println("Ahora hemos creado un objeto date con la fecha indicada, " + testDate2);
+        } catch (Exception e) {
+            System.out.println("invalid format");
+        }
 
-        if (!df2.format(testDate2).equals(datefinal)){
+        if (!df2.format(testDate2).equals(datefinal)) {
             System.out.println("invalid date!!");
         } else {
             System.out.println("valid date");
         }
 
         System.out.println("Escribe el presupuesto para el proyecto");
-        double budget=entrada.nextDouble();
+        double budget = entrada.nextDouble();
         entrada.nextLine();
 
         System.out.println("Escribe el nombre del gerente del proyecto");
-        String nameManager=entrada.nextLine();
+        String nameManager = entrada.nextLine();
 
         System.out.println("Escribe el numero del gerente del proyecto");
-        String phoneManager=entrada.nextLine();
+        String phoneManager = entrada.nextLine();
 
-        System.out.println(mensajero.addProyect(nameProyect, nameClient, phoneClient, testDate, testDate2, budget, nameManager, phoneManager));
+        System.out.println(mensajero.addProyect(nameProyect, nameClient, phoneClient, testDate, testDate2, budget,
+                nameManager, phoneManager));
         setCurrentProyect(nameProyect);
     }
 
-    public void endStageProyect(){
+    public void endStageProyect() {
         System.out.println("¿Desea finalizar la etapa de un proyecto? Escribe la palabra por favor");
         System.out.println("1) Si");
         System.out.println("1) No");
-        String answer=entrada.nextLine();
+        String answer = entrada.nextLine();
 
-        if (answer.equalsIgnoreCase("Si")){
+        if (answer.equalsIgnoreCase("Si")) {
             System.out.println("Escriba el nombre de algún proyecto");
             String nameProy = entrada.nextLine();
             System.out.println(mensajero.endStage(nameProy));
         }
     }
 
-    public void registerCapsule(){
+    public void registerCapsule() {
         System.out.println("Escriba el nombre del proyecto en el cual se registrara la capsula");
         String nameProyect = entrada.nextLine();
         System.out.println("Digite el id de la capsula");
@@ -131,11 +137,12 @@ public class Main {
         String learn = entrada.nextLine();
         System.out.println("Escriba el tipo de capsula para la situacion");
         String typeCapsule = entrada.nextLine();
-        
-        System.out.println(mensajero.addCapsule(nameProyect, id, description, nameColaborator, position, learn, typeCapsule));
+
+        System.out.println(
+                mensajero.addCapsule(nameProyect, id, description, nameColaborator, position, learn, typeCapsule));
     }
 
-    public void approvedCapsule(){
+    public void approvedCapsule() {
         System.out.println("Escriba el nombre del proyecto en el cual se aprobara la capsula");
         String nameProyect = entrada.nextLine();
         System.out.println("Digite el id de la capsula");
@@ -144,26 +151,34 @@ public class Main {
         System.out.println(mensajero.approvedCapsule(nameProyect, id));
     }
 
-    public void ejecutar(int n){
-        if(n==1){
+    public void publicCapules() {
+        System.out.println("Escriba el nombre del proyecto del cual desea publicar sus capsulas");
+        String nameProyect = entrada.nextLine();
+        String ruta = "./src/outData/index.html";
+
+        System.out.println(mensajero.publicCapules(nameProyect, ruta));
+    }
+
+    public void ejecutar(int n) {
+        if (n == 1) {
             registerProyect();
-        } else if(n==2){
+        } else if (n == 2) {
             endStageProyect();
-        } else if(n==3){
+        } else if (n == 3) {
             registerCapsule();
-        } else if(n==4){
+        } else if (n == 4) {
             approvedCapsule();
+        } else if (n == 5) {
+            publicCapules();
         }
     }
-    
-    public String getCurrentProyect(){
+
+    public String getCurrentProyect() {
         return currentProyect;
     }
 
-    public void setCurrentProyect(String currentProyect){
-        this.currentProyect=currentProyect;
+    public void setCurrentProyect(String currentProyect) {
+        this.currentProyect = currentProyect;
     }
 
 }
-
-

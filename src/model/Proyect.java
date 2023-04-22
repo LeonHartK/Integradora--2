@@ -14,80 +14,82 @@ public class Proyect {
     private String phoneManager;
     private Stage[] stages = new Stage[6];
 
-    public Proyect(){
+    public Proyect() {
 
     }
 
-    public Proyect(String nameProyect, String nameClient, String phoneClient, Date startDate, Date finishDate, double budget, String nameManager, String phoneManager){
-        this.nameProyect=nameProyect;
-        this.nameClient=nameClient;
-        this.phoneClient=phoneClient;
-        this.startDate=startDate;
-        this.finishDate=finishDate;
-        this.budget=budget;
-        this.nameManager=nameManager;
-        this.phoneManager=phoneManager;
+    public Proyect(String nameProyect, String nameClient, String phoneClient, Date startDate, Date finishDate,
+            double budget, String nameManager, String phoneManager) {
+        this.nameProyect = nameProyect;
+        this.nameClient = nameClient;
+        this.phoneClient = phoneClient;
+        this.startDate = startDate;
+        this.finishDate = finishDate;
+        this.budget = budget;
+        this.nameManager = nameManager;
+        this.phoneManager = phoneManager;
         this.stages = new Stage[6];
         this.stages[0] = new Stage(typeStage.START, true);
-        for (int i=1;i<6;i++){
-            this.stages[i]=new Stage(getNameStage(i), false);
+        for (int i = 1; i < 6; i++) {
+            this.stages[i] = new Stage(getNameStage(i), false);
         }
     }
 
-    public int numeroEtapa(){
+    public int numeroEtapa() {
         boolean status = false;
-        int num=0;
-        for (int i=0; i<6 && !status; i++){
-            if (stages[i].isActive()){
-                num=i;
-                status=true;
+        int num = 0;
+        for (int i = 0; i < 6 && !status; i++) {
+            if (stages[i].isActive()) {
+                num = i;
+                status = true;
             }
-        } 
+        }
         return num;
     }
 
-    public Stage searchStageObj(){
+    public Stage searchStageObj() {
         boolean status = false;
         Stage stage = null;
-        for (int i=0;i<stages.length && !status;i++){
-            if (stages[i].isActive()){
+        for (int i = 0; i < stages.length && !status; i++) {
+            if (stages[i].isActive()) {
                 status = true;
                 stage = stages[i];
             }
-        }return stage;
+        }
+        return stage;
     }
 
-    private Date calculateDatePlan(int numEtapa, int[] monthsForStage){
+    private Date calculateDatePlan(int numEtapa, int[] monthsForStage) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
 
-        for (int i=0; i<numEtapa; i++){
+        for (int i = 0; i < numEtapa; i++) {
             cal.add(Calendar.MONTH, monthsForStage[i]);
         }
         return cal.getTime();
     }
 
-    public void assignPlannedDates(int[] monthsForStage){
-        for(int i = 0; i<6; i++){
+    public void assignPlannedDates(int[] monthsForStage) {
+        for (int i = 0; i < 6; i++) {
             this.stages[i].setStartDate(calculateDatePlan(i, monthsForStage));
-            this.stages[i].setFinishDate(calculateDatePlan(i+1, monthsForStage));
+            this.stages[i].setFinishDate(calculateDatePlan(i + 1, monthsForStage));
         }
     }
 
-    public String endStage(){
+    public String endStage() {
         int num = numeroEtapa();
         this.stages[num].setActive(false);
         this.stages[num].setRealFinishDate(new Date());
         this.stages[num].setApproved(true);
-        this.stages[num+1].setActive(true);
-        this.stages[num+1].setRealStartDate(new Date());
-        
+        this.stages[num + 1].setActive(true);
+        this.stages[num + 1].setRealStartDate(new Date());
+
         String message = "Se ha finalizado la etapa";
         return message;
     }
 
-    private typeStage getNameStage(int numEtapa){
-        switch (numEtapa){
+    private typeStage getNameStage(int numEtapa) {
+        switch (numEtapa) {
             case 1:
                 return typeStage.ANALYSIS;
             case 2:

@@ -1,0 +1,1 @@
+<html><head><title>Capsulas de interes organizacional</title></head><body><h1>Capsulas</h1><p>capsules[i].getCapsuleName()<br></p></body></html>

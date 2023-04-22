@@ -1,80 +1,193 @@
 package model;
 
-import java.util.ArrayList;
+//import java.io.File;
+//import java.io.FileNotFoundException;
+//import java.text.ParseException;
+//import java.text.SimpleDateFormat;
+//import java.util.ArrayList;
 import java.util.Date;
-
+//import java.util.Scanner;
 
 public class Enterprise {
-    ArrayList<Proyect> proyects = new ArrayList<>(10);
+    public Proyect[] proyects;
+    // public static int nProyects = 0;
 
-    public Enterprise(){
-        this.proyects = new ArrayList<>(10);
+    public Enterprise() {
+        this.proyects = new Proyect[10];
     }
 
-    public String addProyect(String nameProyect, String nameClient, String phoneClient, Date startDate, Date finishDate, double budget, String nameManager, String phoneManager){
-        String message="";
-        if (!searchProyect(nameProyect)){
-            proyects.add(new Proyect(nameProyect, nameClient, phoneClient, startDate, finishDate, budget, nameManager, phoneManager));
-            message="El proyecto fue creado exitosamente";
-        } else {
-            message="El proyecto ya esta creado";
-        } return message;
-    }  
-
-    public boolean searchProyect(String nameProyect){
-        boolean status=false;
-        for (int i=0;i<proyects.size() && !status;i++){
-            if(proyects.get(i)!=null){
-                if (proyects.get(i).getNameProyect().equalsIgnoreCase(nameProyect))
-                status=true;
-            }
-        }
-        return status;
-    }
-
-    public Proyect searchProyectObj(String nameProyect){
+    public String addProyect(String nameProyect, String nameClient, String phoneClient, Date startDate, Date finishDate,
+            double budget, String nameManager, String phoneManager) {
         boolean status = false;
-        Proyect proyect = null;
-        for (int i=0;i<proyects.size() && !status;i++){
-            if (proyects.get(i).getNameProyect().equalsIgnoreCase(nameProyect)){
-                status = true;
-                proyect = proyects.get(i); 
-            } else {
-                System.out.println("No hay un proyecto con ese nombre");
+        String message = "El proyecto no se pudo crear porque no hay mas espacio";
+        Proyect com = searchProyectObj(nameProyect);
+        if (com == null) {
+            for (int i = 0; i < proyects.length && !status; i++) {
+                if (proyects[i] == null) {
+                    proyects[i] = new Proyect(nameProyect, nameClient, phoneClient, startDate, finishDate, budget,
+                            nameManager, phoneManager);
+                    status = true;
+                    message = "El proyecto se creo exitosamente";
+                }
             }
-        }return proyect;
-    }
-
-    public String endStage(String nameProyect){
-        String message="";
-        if(!proyects.isEmpty()){
-            Proyect proyect = searchProyectObj(nameProyect);
-            proyects.remove(proyect);
-            message = proyect.endStage();
-            proyects.add(proyect);
-        } else{
-            message="No hay proyectos creados";
+        } else {
+            message = "El proyecto ya se encuentra creado";
         }
-         return message;
+        return message;
     }
 
-    public String addCapsule(String nameProyect, String id, String description, String capsuleName, String positionColaborator, String learn, String typeCapsule){
-        String message="";
-        if(!proyects.isEmpty()){
-            Proyect proyect = searchProyectObj(nameProyect);
-            message = proyect.searchStageObj().addCapsule(id, description, capsuleName, positionColaborator, learn, typeCapsule);
-        } else{
-            message = "No hay proyectos creados";
-        }return message;
+    public Proyect searchProyectObj(String nameProyect) {
+        boolean existProyect = false;
+        Proyect proyect = null;
+        for (int i = 0; i < proyects.length && !existProyect; i++) {
+            if (proyects[i] != null) {
+                if (proyects[i].getNameProyect().equalsIgnoreCase(nameProyect)) {
+                    existProyect = true;
+                    proyect = proyects[i];
+                }
+            }
+        }
+        return proyect;
     }
 
-    public String approvedCapsule(String nameProyect, String id){
-        String message="";
-        if(!proyects.isEmpty()){
-            Proyect proyect = searchProyectObj(nameProyect);
-            message = proyect.searchStageObj().approvedCapsule(id);
-        } else{
-            message = "No hay proyectos creados";
-        } return message;
+    public String endStage(String nameProyect) {
+        String message = "";
+        boolean status = false;
+        for (int i = 0; i < proyects.length && !status; i++) {
+            if (proyects[0] != null) {
+                if (proyects[i] != null) {
+                    if (proyects[i].getNameProyect().equalsIgnoreCase(nameProyect)) {
+                        Proyect proyect = searchProyectObj(nameProyect);
+                        message = proyect.endStage();
+                        status = true;
+                    }
+                } else {
+                    message = "No hay un proyecto con ese nombre";
+                }
+            } else {
+                message = "No hay proyectos registrados";
+            }
+        }
+        return message;
     }
+
+    public String addCapsule(String nameProyect, String id, String description, String capsuleName,
+            String positionColaborator, String learn, String typeCapsule) {
+        String message = "";
+        boolean status = false;
+        for (int i = 0; i < proyects.length && !status; i++) {
+            if (proyects[0] != null) {
+                if (proyects[i] != null) {
+                    if (proyects[i].getNameProyect().equalsIgnoreCase(nameProyect)) {
+                        Proyect proyect = searchProyectObj(nameProyect);
+                        message = proyect.searchStageObj().addCapsule(id, description, capsuleName, positionColaborator,
+                                learn, typeCapsule);
+                        status = true;
+                    } else {
+                        message = "No hay proyectos con ese nombre";
+                    }
+                }
+            } else {
+                message = "No hay proyectos creados";
+            }
+        }
+        return message;
+    }
+
+    public String approvedCapsule(String nameProyect, String id) {
+        String message = "";
+        boolean status = false;
+        for (int i = 0; i < proyects.length && !status; i++) {
+            if (proyects[0] != null) {
+                if (proyects[i] != null) {
+                    if (proyects[i].getNameProyect().equalsIgnoreCase(nameProyect)) {
+                        Proyect proyect = searchProyectObj(nameProyect);
+                        message = proyect.searchStageObj().approvedCapsule(id);
+                        status = true;
+                    } else {
+                        message = "No hay un proyecto con ese nombre";
+                    }
+                }
+            } else {
+                message = "No hay proyectos creados";
+            }
+        }
+        return message;
+    }
+
+    public String publicCapules(String nameProyect, String ruta) {
+        String message = "";
+        boolean status = false;
+        for (int i = 0; i < proyects.length && !status; i++) {
+            if (proyects[0] != null) {
+                if (proyects[i] != null) {
+                    if (proyects[i].getNameProyect().equalsIgnoreCase(nameProyect)) {
+                        Proyect proyect = searchProyectObj(nameProyect);
+                        message = proyect.searchStageObj().generarArchivoHTML(ruta);
+                        status = true;
+                    } else {
+                        message = "No hay un proyecto con dicho nombre";
+                    }
+                }
+            } else {
+                message = "No hay proyectos registrados";
+            }
+        }
+        return message;
+    }
+
+    /*
+     * public void leerProyects() throws FileNotFoundException{
+     * File fclnts = new File("./src/inData/Proyectos.txt");
+     * Scanner infile = new Scanner(fclnts);
+     * 
+     * String nameProyect;
+     * String nameClient;
+     * String phoneClient;
+     * String startDate;
+     * Date finishDate;
+     * String budget;
+     * String nameManager;
+     * String phoneManager;
+     * 
+     * while(infile.hasNext()){
+     * nameProyect = infile.next();
+     * nameClient = infile.next();
+     * phoneClient = infile.next();
+     * startDate = infile.next();
+     * try{
+     * startDate = infile.nextLine();
+     * SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+     * Date starDate = formato.parse(startDate);
+     * 
+     * infile.close();
+     * } catch(FileNotFoundException e){
+     * System.out.println("El archivo no existe");
+     * } catch (ParseException e){
+     * System.out.println("Error al parsear la fecha");
+     * }
+     * 
+     * 
+     * 
+     * try{
+     * while(infile.hasNextLine()){
+     * String fechatexto2 = infile.nextLine();
+     * SimpleDateFormat formato2 = new SimpleDateFormat("dd/MM/yyyy");
+     * Date fecha2 = formato2.parse(fechatexto2);
+     * }
+     * infile.close();
+     * } catch(FileNotFoundException e){
+     * System.out.println("El archivo no existe");
+     * } catch (ParseException e){
+     * System.out.println("Error al parsear la fecha");
+     * }
+     * budget = infile.next();
+     * nameManager = infile.next();
+     * phoneManager = infile.next();
+     * 
+     * //proyects[nProyects++] = new Proyect(nameProyect, nameClient, phoneClient,
+     * fecha, finishDate, budget, nameManager, phoneManager)
+     * }
+     * }
+     */
 }
