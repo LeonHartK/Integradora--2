@@ -24,9 +24,12 @@ public class Enterprise {
     public boolean searchProyect(String nameProyect){
         boolean status=false;
         for (int i=0;i<proyects.size() && !status;i++){
-            if (proyects.get(i).getNameProyect().equalsIgnoreCase(nameProyect))
+            if(proyects.get(i)!=null){
+                if (proyects.get(i).getNameProyect().equalsIgnoreCase(nameProyect))
                 status=true;
-        } return status;
+            }
+        }
+        return status;
     }
 
     public Proyect searchProyectObj(String nameProyect){
@@ -39,15 +42,19 @@ public class Enterprise {
             } else {
                 System.out.println("No hay un proyecto con ese nombre");
             }
-        } return proyect;
+        }return proyect;
     }
 
     public String endStage(String nameProyect){
-        Proyect proyect = searchProyectObj(nameProyect);
-        proyects.remove(proyect);
-        String message = proyect.endStage();
-        proyects.add(proyect);
-        return message;
+        String message="";
+        if(!proyects.isEmpty()){
+            Proyect proyect = searchProyectObj(nameProyect);
+            proyects.remove(proyect);
+            message = proyect.endStage();
+            proyects.add(proyect);
+        } else{
+            message="No hay proyectos creados";
+        }
+         return message;
     }
-
 }
