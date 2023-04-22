@@ -179,7 +179,7 @@ public class Enterprise {
                 if (proyects[i] != null) {
                     if (proyects[i].cantCapStage() > max) {
                         max = proyects[i].cantCapStage();
-                        message = "El proyecto con mas capsulas es: " + proyects[i].getNameProyect();
+                        message = "El proyecto con más capsulas es: " + proyects[i].getNameProyect();
                     }
                 }
             } else {
@@ -189,6 +189,23 @@ public class Enterprise {
         return message;
     }
 
+    public String Colaborator(String nameColaborator) {
+        String message = "";
+        for (int i = 0; i < proyects.length; i++) {
+            if (proyects[0] != null) {
+                if (proyects[i] != null) {
+                    if (proyects[i].registeredCap(nameColaborator) == true) {
+                        message = "El colaborador si ha creado cápsulas anteriormente";
+                    } else {
+                        message = "El colaborador no ha creado capsulas anteriormente";
+                    }
+                }
+            } else {
+                message = "No hay proyectos creados";
+            }
+        }
+        return message;
+    }
     /*
      * public void leerProyects() throws FileNotFoundException{
      * File fclnts = new File("./src/inData/Proyectos.txt");

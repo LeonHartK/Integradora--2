@@ -172,6 +172,34 @@ public class Stage {
         return count;
     }
 
+    public Capsule ifColab(String nameColaborator) {
+        boolean existCapsule = false;
+        Capsule c = null;
+        for (int i = 0; i < capsules.length && !existCapsule; i++) {
+            if (capsules[i] != null) {
+                if (capsules[i].getCapsuleName().equalsIgnoreCase(nameColaborator)) {
+                    existCapsule = true;
+                    c = capsules[i];
+                }
+            }
+        }
+        return c;
+    }
+
+    public boolean ifColaborator(String nameColaborator) {
+        boolean existCapsule = false;
+        for (int i = 0; i < capsules.length && !existCapsule; i++) {
+            if (capsules[0] != null) {
+                if (capsules[i] != null) {
+                    if (capsules[i].getCapsuleName().equalsIgnoreCase(nameColaborator)) {
+                        existCapsule = true;
+                    }
+                }
+            }
+        }
+        return existCapsule;
+    }
+
     public typeStage getName() {
         return name;
     }

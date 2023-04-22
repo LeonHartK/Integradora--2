@@ -26,7 +26,7 @@ public class Main {
             opc = green.menu();
 
             green.ejecutar(opc);
-        } while (opc != 9);
+        } while (opc != 10);
     }
 
     public int menu() {
@@ -35,9 +35,10 @@ public class Main {
         System.out.println("3)Registrar una capsula");
         System.out.println("4)Aprobar una capsula");
         System.out.println("5)Publicar capsula");
-        System.out.println("6)Numero de capsulas registradas por tipo de capsula");
+        System.out.println("6)Numero de capsulas registradas por tipo de cápsula");
         System.out.println("7)Lecciones Aprendidas");
         System.out.println("8)Proyecto con mas capsulas registradas");
+        System.out.println("9)Verificar si un colaborador registro algúna cápsula");
 
         int n = entrada.nextInt();
         entrada.nextLine();
@@ -174,6 +175,13 @@ public class Main {
         System.out.println(mensajero.finMax());
     }
 
+    public void ifColaborator() {
+        System.out.println("Escribe el nombre del colaborador a buscar");
+        String nameColaborator = entrada.nextLine();
+
+        System.out.println(mensajero.Colaborator(nameColaborator));
+    }
+
     public void ejecutar(int n) {
         if (n == 1) {
             registerProyect();
@@ -191,6 +199,8 @@ public class Main {
 
         } else if (n == 8) {
             maxProyect();
+        } else if (n == 9) {
+            ifColaborator();
         }
     }
 

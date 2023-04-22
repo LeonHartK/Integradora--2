@@ -117,6 +117,20 @@ public class Proyect {
         return count;
     }
 
+    public boolean registeredCap(String nameColaborator) {
+        boolean exist = false;
+        for (int i = 0; i < stages.length; i++) {
+            if (stages[0] != null) {
+                if (stages[i] != null) {
+                    if (stages[i].ifColaborator(nameColaborator) == true) {
+                        exist = true;
+                    }
+                }
+            }
+        }
+        return exist;
+    }
+
     public String getNameProyect() {
         return nameProyect;
     }
