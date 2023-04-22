@@ -160,6 +160,18 @@ public class Stage {
         return message;
     }
 
+    public int count() {
+        int count = 0;
+        for (int i = 0; i < capsules.length; i++) {
+            if (capsules[0] != null) {
+                if (capsules[i] != null) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
     public typeStage getName() {
         return name;
     }

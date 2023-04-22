@@ -26,7 +26,7 @@ public class Main {
             opc = green.menu();
 
             green.ejecutar(opc);
-        } while (opc != 7);
+        } while (opc != 9);
     }
 
     public int menu() {
@@ -36,6 +36,8 @@ public class Main {
         System.out.println("4)Aprobar una capsula");
         System.out.println("5)Publicar capsula");
         System.out.println("6)Numero de capsulas registradas por tipo de capsula");
+        System.out.println("7)Lecciones Aprendidas");
+        System.out.println("8)Proyecto con mas capsulas registradas");
 
         int n = entrada.nextInt();
         entrada.nextLine();
@@ -124,15 +126,15 @@ public class Main {
     }
 
     public void registerCapsule() {
-        System.out.println("Escriba el nombre del proyecto en el cual se registrara la capsula");
+        System.out.println("Escriba el nombre del proyecto en el cual se registrara la capsula:");
         String nameProyect = entrada.nextLine();
-        System.out.println("Digite el id de la capsula");
+        System.out.println("Digite el id de la capsula:");
         String id = entrada.nextLine();
-        System.out.println("Describa la situacion que desea registrar");
+        System.out.println("Describa la situacion que desea registrar:");
         String description = entrada.nextLine();
-        System.out.println("Escriba el nombre del colaborados por favor:");
+        System.out.println("Escriba el nombre del colaborador por favor:");
         String nameColaborator = entrada.nextLine();
-        System.out.println("Escriba la posicion del colaborador?");
+        System.out.println("Escriba la posicion del colaborador:");
         String position = entrada.nextLine();
         System.out.println("Aprendizaje de dicha situacion: ");
         String learn = entrada.nextLine();
@@ -168,6 +170,10 @@ public class Main {
         System.out.println(mensajero.cantCapType(nameProyect));
     }
 
+    public void maxProyect() {
+        System.out.println(mensajero.finMax());
+    }
+
     public void ejecutar(int n) {
         if (n == 1) {
             registerProyect();
@@ -181,6 +187,10 @@ public class Main {
             publicCapules();
         } else if (n == 6) {
             cantCap();
+        } else if (n == 7) {
+
+        } else if (n == 8) {
+            maxProyect();
         }
     }
 

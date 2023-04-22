@@ -105,6 +105,18 @@ public class Proyect {
         }
     }
 
+    public int cantCapStage() {
+        int count = 0;
+        for (int i = 0; i < stages.length; i++) {
+            if (stages[0] != null) {
+                if (stages[i] != null) {
+                    count += stages[i].count();
+                }
+            }
+        }
+        return count;
+    }
+
     public String getNameProyect() {
         return nameProyect;
     }

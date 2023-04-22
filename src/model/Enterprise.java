@@ -171,6 +171,24 @@ public class Enterprise {
         return message;
     }
 
+    public String finMax() {
+        String message = "";
+        int max = 0;
+        for (int i = 0; i < proyects.length; i++) {
+            if (proyects[0] != null) {
+                if (proyects[i] != null) {
+                    if (proyects[i].cantCapStage() > max) {
+                        max = proyects[i].cantCapStage();
+                        message = "El proyecto con mas capsulas es: " + proyects[i].getNameProyect();
+                    }
+                }
+            } else {
+                message = "No hay proyectos registrados";
+            }
+        }
+        return message;
+    }
+
     /*
      * public void leerProyects() throws FileNotFoundException{
      * File fclnts = new File("./src/inData/Proyectos.txt");
