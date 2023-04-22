@@ -36,9 +36,11 @@ public class Main {
         System.out.println("4)Aprobar una capsula");
         System.out.println("5)Publicar capsula");
         System.out.println("6)Numero de capsulas registradas por tipo de cápsula");
-        System.out.println("7)Lecciones Aprendidas");
+        System.out.println("7)Lecciones Aprendidas (No funcional)");
         System.out.println("8)Proyecto con mas capsulas registradas");
         System.out.println("9)Verificar si un colaborador registro algúna cápsula");
+        System.out
+                .println("10) Situaciones y lecciones aprendidas de las capsulas aprobadas y aplicadas (No funcional)");
 
         int n = entrada.nextInt();
         entrada.nextLine();
