@@ -19,3 +19,17 @@ Jean
 Monitor
 Se recomprueba
 3
+Prueba3
+029
+Cuarta prueba de cargar de datos de capsulas
+Juan
+Ingeniero
+Se comprueba
+3
+Prueba2
+82
+Quinta prueba de carga de datos de capsulas
+Alex
+Tecnico
+Se comprueba
+4
