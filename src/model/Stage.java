@@ -106,8 +106,13 @@ public class Stage {
                             FileWriter writer = new FileWriter(file);
                             writer.write("<html><head><title>Capsulas de interes organizacional</title></head>");
                             writer.write("<body><h1>Capsulas</h1><ul>");
-                            for (Capsule capsulas : capsules) {
-                                writer.write("<li>" + capsulas + "</li>");
+                            for (int j=0; j<capsules.length;j++) {
+                                if(capsules[0] != null){
+                                    if(capsules[j]!=null){
+                                        writer.write("<li>Capsula #" + capsules[j].getId() + "</li>");
+                                    }
+                                    
+                                }
                             }
                             writer.write("</ul></body></html>");
                             writer.close();
@@ -115,6 +120,8 @@ public class Stage {
                         } catch (IOException e) {
                             message = "Ocurrio un error al generar el archivo HTML." + e.getMessage();
                         }
+                    } else {
+                        message = "No hay capsulas aprobadas";
                     }
                 }
             } else {

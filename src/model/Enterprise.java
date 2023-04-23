@@ -141,7 +141,7 @@ public class Enterprise {
                     } else {
                         message = "No hay un proyecto con dicho nombre";
                     }
-                }
+                } 
             } else {
                 message = "No hay proyectos registrados";
             }
