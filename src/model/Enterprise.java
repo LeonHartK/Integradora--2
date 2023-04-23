@@ -211,6 +211,32 @@ public class Enterprise {
         }
         return message;
     }
+    public void leerCap() throws FileNotFoundException {
+
+        File directorio = new File(System.getProperty("user.dir")+"/src/inData/Capsulas.txt");
+        Scanner infile = new Scanner(directorio);
+
+        String nameProyect; 
+        String id;
+        String description; 
+        String capsuleName;
+        String positionColaborator;
+        String learn; 
+        String typeCapsule;
+
+        while(infile.hasNext()) {
+            nameProyect = infile.nextLine();
+            id = infile.nextLine();
+            description = infile.nextLine();
+            capsuleName = infile.nextLine();
+            positionColaborator = infile.nextLine();
+            learn = infile.nextLine();
+            typeCapsule = infile.nextLine();
+            addCapsule(nameProyect, id, description, capsuleName, positionColaborator, learn, Integer.parseInt(typeCapsule));
+        }
+        infile.close(); 
+    }
+
     public void leerProyectos() throws FileNotFoundException {
 
         File directorio = new File(System.getProperty("user.dir")+"/src/inData/Proyectos.txt");

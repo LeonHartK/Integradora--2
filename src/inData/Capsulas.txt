@@ -1,0 +1,21 @@
+Prueba1
+25
+Primera prueba de carga de datos de capsulas
+Alejandro
+Administrador
+Se aprendio a cargar datos por archivos txt
+1
+Prueba2
+12
+Segunda prueba de cargar de datos de capsulas
+Manuel
+Asesor
+Se comprobo que se puede cargar
+3
+Prueba2
+14
+Tercera prueba de carga de datos de capsulas
+Jean
+Monitor
+Se recomprueba
+3

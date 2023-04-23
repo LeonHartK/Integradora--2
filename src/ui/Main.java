@@ -25,6 +25,7 @@ public class Main {
 
         try{
             green.mensajero.leerProyectos();
+            green.mensajero.leerCap();
         } catch (Exception e){
             e.printStackTrace();
         }
