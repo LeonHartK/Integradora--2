@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.InputMismatchException;
-//import java.util.Scanner;
 import java.util.Scanner;
 
 public class Enterprise {
