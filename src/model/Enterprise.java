@@ -1,16 +1,21 @@
 package model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
 //import java.io.File;
 //import java.io.FileNotFoundException;
 //import java.text.ParseException;
 //import java.text.SimpleDateFormat;
 //import java.util.ArrayList;
 import java.util.Date;
+import java.util.InputMismatchException;
 //import java.util.Scanner;
+import java.util.Scanner;
 
 public class Enterprise {
     public Proyect[] proyects;
-    // public static int nProyects = 0;
+    public static int nProyects = 0;
 
     public Enterprise() {
         this.proyects = new Proyect[10];
@@ -206,58 +211,49 @@ public class Enterprise {
         }
         return message;
     }
-    /*
-     * public void leerProyects() throws FileNotFoundException{
-     * File fclnts = new File("./src/inData/Proyectos.txt");
-     * Scanner infile = new Scanner(fclnts);
-     * 
-     * String nameProyect;
-     * String nameClient;
-     * String phoneClient;
-     * String startDate;
-     * Date finishDate;
-     * String budget;
-     * String nameManager;
-     * String phoneManager;
-     * 
-     * while(infile.hasNext()){
-     * nameProyect = infile.next();
-     * nameClient = infile.next();
-     * phoneClient = infile.next();
-     * startDate = infile.next();
-     * try{
-     * startDate = infile.nextLine();
-     * SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-     * Date starDate = formato.parse(startDate);
-     * 
-     * infile.close();
-     * } catch(FileNotFoundException e){
-     * System.out.println("El archivo no existe");
-     * } catch (ParseException e){
-     * System.out.println("Error al parsear la fecha");
-     * }
-     * 
-     * 
-     * 
-     * try{
-     * while(infile.hasNextLine()){
-     * String fechatexto2 = infile.nextLine();
-     * SimpleDateFormat formato2 = new SimpleDateFormat("dd/MM/yyyy");
-     * Date fecha2 = formato2.parse(fechatexto2);
-     * }
-     * infile.close();
-     * } catch(FileNotFoundException e){
-     * System.out.println("El archivo no existe");
-     * } catch (ParseException e){
-     * System.out.println("Error al parsear la fecha");
-     * }
-     * budget = infile.next();
-     * nameManager = infile.next();
-     * phoneManager = infile.next();
-     * 
-     * //proyects[nProyects++] = new Proyect(nameProyect, nameClient, phoneClient,
-     * fecha, finishDate, budget, nameManager, phoneManager)
-     * }
-     * }
-     */
+    public void leerProyectos() throws FileNotFoundException {
+
+        File directorio = new File(System.getProperty("user.dir")+"/src/inData/Proyectos.txt");
+        Scanner infile = new Scanner(directorio);
+
+        String nameProyect;
+        String nameClient;
+        String phoneClient;
+        String startDate;
+        String finishDate;
+        String budget;
+        String nameManager;
+        String phoneManager;
+
+        while(infile.hasNext()) {
+            nameProyect = infile.next();
+            nameClient = infile.next();
+            phoneClient = infile.next();
+            startDate = infile.next();
+            finishDate = infile.next();
+            budget = infile.next();
+            nameManager = infile.next();
+            phoneManager = infile.next();
+            proyects [nProyects++] = new Proyect(nameProyect, nameClient, phoneClient, parseo(startDate), parseo(finishDate), Double.parseDouble(budget), nameManager, phoneManager);
+        }
+        infile.close(); 
+    }
+
+    public Date parseo(String fecha) throws InputMismatchException{
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date testDate = null;
+
+        String date = fecha;
+
+        try {
+            testDate = df.parse(date);
+        } catch (Exception e) {
+            throw new InputMismatchException("Format invalid");
+        }
+
+        if (!df.format(testDate).equals(date)) {
+            throw new InputMismatchException("Format invalid");
+        } 
+        return testDate;
+    }
 }

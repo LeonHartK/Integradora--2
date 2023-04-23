@@ -1,6 +1,9 @@
 package ui;
 
 import java.util.Date;
+import java.util.InputMismatchException;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
@@ -19,6 +22,12 @@ public class Main {
 
     public static void main(String[] args) {
         Main green = new Main();
+
+        try{
+            green.mensajero.leerProyectos();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
         int opc;
 
@@ -61,43 +70,23 @@ public class Main {
         System.out.println("Digite la fecha estimada para iniciar el proyecto");
         String fecha = entrada.nextLine();
 
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        Date testDate = null;
-
-        String date = fecha;
+        Date fechaactualizada=null;
 
         try {
-            testDate = df.parse(date);
-            System.out.println("Ahora hemos creado un objeto date con la fecha indicada, " + testDate);
-        } catch (Exception e) {
-            System.out.println("invalid format");
-        }
-
-        if (!df.format(testDate).equals(date)) {
-            System.out.println("invalid date!!");
-        } else {
-            System.out.println("valid date");
+            fechaactualizada=mensajero.parseo(fecha);
+        } catch (InputMismatchException e){
+            System.out.println(e);
         }
 
         System.out.println("Digite la fecha estimada para finalizar el proyecto");
         String fechafinal = entrada.nextLine();
 
-        SimpleDateFormat df2 = new SimpleDateFormat("dd/MM/yyyy");
-        Date testDate2 = null;
-
-        String datefinal = fechafinal;
+        Date fechafinalactualizada=null;
 
         try {
-            testDate2 = df2.parse(datefinal);
-            System.out.println("Ahora hemos creado un objeto date con la fecha indicada, " + testDate2);
-        } catch (Exception e) {
-            System.out.println("invalid format");
-        }
-
-        if (!df2.format(testDate2).equals(datefinal)) {
-            System.out.println("invalid date!!");
-        } else {
-            System.out.println("valid date");
+            fechafinalactualizada=mensajero.parseo(fechafinal);
+        } catch (InputMismatchException e){
+            System.out.println(e);
         }
 
         System.out.println("Escribe el presupuesto para el proyecto");
@@ -110,7 +99,7 @@ public class Main {
         System.out.println("Escribe el numero del gerente del proyecto");
         String phoneManager = entrada.nextLine();
 
-        System.out.println(mensajero.addProyect(nameProyect, nameClient, phoneClient, testDate, testDate2, budget,
+        System.out.println(mensajero.addProyect(nameProyect, nameClient, phoneClient, fechaactualizada, fechafinalactualizada, budget,
                 nameManager, phoneManager));
         setCurrentProyect(nameProyect);
     }
@@ -213,5 +202,4 @@ public class Main {
     public void setCurrentProyect(String currentProyect) {
         this.currentProyect = currentProyect;
     }
-
 }
