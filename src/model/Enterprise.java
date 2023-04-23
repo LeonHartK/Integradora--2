@@ -15,6 +15,20 @@ public class Enterprise {
         this.proyects = new Proyect[10];
     }
 
+    /**
+     * add projects
+     * This method adds new projects to the project array.
+     * @param nameProyect proyect's name
+     * @param nameClient project customer name
+     * @param phoneClient project customer phone
+     * @param startDate project planned start date
+     * @param finishDate project planned finish date
+     * @param budget budget for the project
+     * @param nameManager project manager name
+     * @param phoneManager project manager phone
+     * @return The method returns a message to inform if the project was created successfully or not.
+     */
+
     public String addProyect(String nameProyect, String nameClient, String phoneClient, Date startDate, Date finishDate,
             double budget, String nameManager, String phoneManager) {
         boolean status = false;
@@ -35,6 +49,13 @@ public class Enterprise {
         return message;
     }
 
+    /**
+     * Search Proyect
+     * Find the project in the array
+     * @param nameProyect This method receives the name of the project to start the search
+     * @return This method returns the project object
+     */
+
     public Proyect searchProyectObj(String nameProyect) {
         boolean existProyect = false;
         Proyect proyect = null;
@@ -48,6 +69,13 @@ public class Enterprise {
         }
         return proyect;
     }
+
+    /**
+     * end Stage
+     * this method allows to finish the stage of a particular project
+     * @param nameProyect This method receives the name of the project to which the stage will be completed
+     * @return Message
+     */
 
     public String endStage(String nameProyect) {
         String message = "";
@@ -69,6 +97,19 @@ public class Enterprise {
         }
         return message;
     }
+
+    /**
+     * Add Capsule
+     * This method adds new capsules to the capsule array.
+     * @param nameProyect
+     * @param id
+     * @param description
+     * @param capsuleName
+     * @param positionColaborator
+     * @param learn
+     * @param typeCapsule
+     * @return message
+     */
 
     public String addCapsule(String nameProyect, String id, String description, String capsuleName,
             String positionColaborator, String learn, int typeCapsule) {
@@ -93,6 +134,13 @@ public class Enterprise {
         return message;
     }
 
+    /**
+     * Type Capsule
+     * This method offers the different types of capsules
+     * @param capsule 
+     * @return typeCapsule
+     */
+
     public typeCapsule getNameCapsule(int capsule) {
         switch (capsule) {
             case 1:
@@ -106,6 +154,13 @@ public class Enterprise {
         }
         return null;
     }
+
+    /**
+     * 
+     * @param nameProyect
+     * @param id
+     * @return
+     */
 
     public String approvedCapsule(String nameProyect, String id) {
         String message = "";
@@ -128,6 +183,13 @@ public class Enterprise {
         return message;
     }
 
+    /**
+     * 
+     * @param nameProyect
+     * @param ruta
+     * @return
+     */
+
     public String publicCapules(String nameProyect, String ruta) {
         String message = "";
         boolean status = false;
@@ -148,6 +210,12 @@ public class Enterprise {
         }
         return message;
     }
+
+    /**
+     * 
+     * @param nameProyect
+     * @return
+     */
 
     public String cantCapType(String nameProyect) {
         String message = "";
@@ -170,6 +238,11 @@ public class Enterprise {
         return message;
     }
 
+    /**
+     * 
+     * @return
+     */
+
     public String finMax() {
         String message = "";
         int max = 0;
@@ -188,6 +261,12 @@ public class Enterprise {
         return message;
     }
 
+    /**
+     * 
+     * @param nameColaborator
+     * @return
+     */
+
     public String Colaborator(String nameColaborator) {
         String message = "";
         for (int i = 0; i < proyects.length; i++) {
@@ -205,6 +284,12 @@ public class Enterprise {
         }
         return message;
     }
+
+    /**
+     * 
+     * @throws FileNotFoundException
+     */
+
     public void leerCap() throws FileNotFoundException {
 
         File directorio = new File(System.getProperty("user.dir")+"/src/inData/Capsulas.txt");
@@ -230,6 +315,11 @@ public class Enterprise {
         }
         infile.close(); 
     }
+
+    /**
+     * 
+     * @throws FileNotFoundException
+     */
 
     public void leerProyectos() throws FileNotFoundException {
 
@@ -258,6 +348,13 @@ public class Enterprise {
         }
         infile.close(); 
     }
+
+    /**
+     * 
+     * @param fecha
+     * @return
+     * @throws InputMismatchException
+     */
 
     public Date parseo(String fecha) throws InputMismatchException{
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
