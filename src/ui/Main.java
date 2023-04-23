@@ -19,12 +19,16 @@ public class Main {
 
     public static void main(String[] args) {
         Main green = new Main();
+        System.out.println("¿Desea cargar los datos?\n1)Si\n2)No");
+        String answer = green.entrada.nextLine();
 
-        try{
-            green.mensajero.leerProyectos();
-            green.mensajero.leerCap();
-        } catch (Exception e){
-            e.printStackTrace();
+        if(answer.equalsIgnoreCase("Si")){
+            try{
+                green.mensajero.leerProyectos();
+                green.mensajero.leerCap();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
 
         int opc;
