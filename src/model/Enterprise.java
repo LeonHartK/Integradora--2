@@ -159,7 +159,7 @@ public class Enterprise {
      * 
      * @param nameProyect
      * @param id
-     * @return
+     * @return message
      */
 
     public String approvedCapsule(String nameProyect, String id) {
@@ -187,7 +187,7 @@ public class Enterprise {
      * 
      * @param nameProyect
      * @param ruta
-     * @return
+     * @return message
      */
 
     public String publicCapules(String nameProyect, String ruta) {
@@ -214,7 +214,7 @@ public class Enterprise {
     /**
      * 
      * @param nameProyect
-     * @return
+     * @return message
      */
 
     public String cantCapType(String nameProyect) {
@@ -239,8 +239,8 @@ public class Enterprise {
     }
 
     /**
-     * 
-     * @return
+     * Find Max proyect with capsules
+     * @return message
      */
 
     public String finMax() {
@@ -264,7 +264,7 @@ public class Enterprise {
     /**
      * 
      * @param nameColaborator
-     * @return
+     * @return message
      */
 
     public String Colaborator(String nameColaborator) {
